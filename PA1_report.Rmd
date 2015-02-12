@@ -9,19 +9,42 @@ output:
 ## Loading and preprocessing the data
 ```{r, echo = TRUE}
 # libraries
-
+library(dplyr)
+library(ggvis)
 # using unzip to decompres the file
-unzip("activity.zip", exdir = ".")
+# if(!file.exists("./activity.csv")) else if {
+#     unzip("activity.zip", exdir = ".")}
 # read csv into data frame called df.activities
-df.actities <- read.csv(file = "./activity.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
+df_actities <- read.csv(file = "./activity.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
+df_actities$date <- as.Date(df_actities$date)
 ```
 
 
 
 ## What is mean total number of steps taken per day?
 ```{r, echo = TRUE}
+### make a histogram of the steps per day
+df_actities %>%
+    filter(steps <= 1) %>%
+    ggvis(x = ~date, y = ~steps) %>%
+    layer_histograms(width = 1)
+    
+### mean and median of steps per day
+#### Mean of the steps per day
+mean_activities <- df_actities %>%
+    filter(steps >= 1) %>%
+    group_by(date) %>%
+    summarise(mean(steps))
 
+print(mean_activities, type = "html")
+#### Median of the steps per day
+median_activities <- df.actities %>%
+    filter(steps <= 1) %>%
+    group_by(date) %>%
+    summarise(median(steps)) %>%
+    as_data_frame()
 
+median_activities
 ```
 
 
