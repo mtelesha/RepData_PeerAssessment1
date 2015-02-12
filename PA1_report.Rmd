@@ -1,0 +1,43 @@
+---
+title: "Reproducible Research: Peer Assessment 1"
+output: 
+  html_document:
+    keep_md: true
+---
+
+
+## Loading and preprocessing the data
+```{r, echo = TRUE}
+# libraries
+
+# using unzip to decompres the file
+unzip("activity.zip", exdir = ".")
+# read csv into data frame called df.activities
+df.actities <- read.csv(file = "./activity.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
+```
+
+
+
+## What is mean total number of steps taken per day?
+```{r, echo = TRUE}
+
+
+```
+
+
+## What is the average daily activity pattern?
+```{r, echo = TRUE}
+
+```
+
+
+## Imputing missing values
+```{r, echo = TRUE}
+
+```
+
+
+## Are there differences in activity patterns between weekdays and weekends?
+```{r, echo = TRUE}
+
+```
