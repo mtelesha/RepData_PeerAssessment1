@@ -9,13 +9,15 @@ output:
 ## Loading and preprocessing the data
 ```{r, echo = TRUE}
 # libraries
-library(dplyr)
-library(ggvis)
+library(dplyr) # my workhorse for data manipulation and piping subsetting
+library(ggvis) # Hadley Wickham new plotting system
+library(magrittr) # for piping %>% and %<>%
 # using unzip to decompres the file
 # if(!file.exists("./activity.csv")) else if {
 #     unzip("activity.zip", exdir = ".")}
 # read csv into data frame called df.activities
-df_actities <- read.csv(file = "./activity.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
+df_actities <- read.csv(file = "./activity.csv", header = TRUE, sep = ","
+                        , stringsAsFactors = FALSE)
 df_actities$date <- as.Date(df_actities$date)
 ```
 
@@ -25,7 +27,8 @@ df_actities$date <- as.Date(df_actities$date)
 ```{r, echo = TRUE}
 ### make a histogram of the steps per day
 df_actities %>%
-    filter(steps <= 1) %>%
+    filter(steps >= 1) %>% # does not remove NA since NA does not equal 0
+    filter(steps != "NA") %>% # To remove NAs
     ggvis(x = ~date, y = ~steps) %>%
     layer_histograms(width = 1)
     
