@@ -12,58 +12,198 @@ output:
 library(dplyr) # my workhorse for data manipulation and piping subsetting
 library(ggvis) # Hadley Wickham new plotting system
 library(magrittr) # for piping %>% and %<>%
+library(knitr) # kable wouldn't work without it
+
 # using unzip to decompres the file
 # if(!file.exists("./activity.csv")) else if {
 #     unzip("activity.zip", exdir = ".")}
 # read csv into data frame called df.activities
-df_actities <- read.csv(file = "./activity.csv", header = TRUE, sep = ","
-                        , stringsAsFactors = FALSE)
+df_actities <- read.csv(file = "./activity.csv", header = TRUE, sep = ",",
+                        stringsAsFactors = FALSE)
 df_actities$date <- as.Date(df_actities$date)
 ```
 
 
 
 ## What is mean total number of steps taken per day?
-```{r, echo = TRUE}
+####1. Histogram of the activites by day
+```{r, echo = TRUE, results = "asis"}
 ### make a histogram of the steps per day
 df_actities %>%
     filter(steps >= 1) %>% # does not remove NA since NA does not equal 0
     filter(steps != "NA") %>% # To remove NAs
     ggvis(x = ~date, y = ~steps) %>%
     layer_histograms(width = 1)
-    
-### mean and median of steps per day
-#### Mean of the steps per day
+```
+
+####2. Mean of the steps per day
+```{r, echo = TRUE, results = "asis"}
 mean_activities <- df_actities %>%
     filter(steps >= 1) %>%
+    filter(steps != "NA") %>% # To remove NAs
     group_by(date) %>%
     summarise(mean(steps))
+```
 
-print(mean_activities, type = "html")
-#### Median of the steps per day
-median_activities <- df.actities %>%
-    filter(steps <= 1) %>%
+Table of the days and their means of steps
+```{r, echo = TRUE, results = "asis"}
+kable(mean_activities)
+```
+
+####3. Median of the steps per day
+```{r, echo = TRUE, results = "asis"}
+median_activities <- df_actities %>%
+    filter(steps >= 1) %>%
+    filter(steps != "NA") %>% # To remove NAs
     group_by(date) %>%
     summarise(median(steps)) %>%
     as_data_frame()
-
-median_activities
 ```
 
+Table of the days and their median of steps
+```{r, echo = TRUE, results = "asis"}
+kable(median_activities)
+```
 
 ## What is the average daily activity pattern?
+This is a plot showing the average steps taken through out the day. The time is in military time with the interval being an average of steps every 5 minutes.
+*Between 8:00 AM and 9:30 AM was the most active time of day*
 ```{r, echo = TRUE}
 
+df_actities %>%
+    select(interval, steps) %>% 
+    filter(steps != "NA") %>% # To remove NAs
+    group_by(interval) %>% 
+    summarise_each(funs(mean)) %>%
+    ggvis(x = ~interval, y = ~steps) %>% 
+    layer_lines() %>%
+    add_axis("x" , title = "Time of Day (Military Time") %>%
+    add_axis("y", title = "Steps in 5 Minutes")
+
+```
+## 5 minute interval that contains the max number of steps
+```{r, echo = TRUE}
+# Create a data frame of the mean of the intervals
+df_interval_mean <- df_actities %>%
+    select(interval, steps) %>% 
+    filter(steps != "NA") %>% # To remove NAs
+    group_by(interval) %>% 
+    summarise_each(funs(mean))
+# row identified
+df_interval_mean[which.max(df_interval_mean$steps), ]
+```
+
+# Missing Values handled
+
+## Number of missing values
+1. sum of missing values
+```{r, echo = TRUE}
+# sum of missing values
+sum(is.na(df_actities))
+```
+
+## Creating a new data frame with the average of the intervals replacing the NA values in steps
+```{r, echo = TRUE}
+# Create a data frame of the mean of the intervals
+df_interval_mean <- df_actities %>%
+    select(interval, steps) %>% 
+    filter(steps != "NA") %>% # To remove NAs
+    group_by(interval) %>% 
+    summarise_each(funs(mean))
+# merge data_frames of both and join on interval
+df_actities_fixed <- left_join(df_actities, df_interval_mean, by = "interval")
+# ifelse which column is needed
+df_actities_fixed$steps <- ifelse(is.na(df_actities_fixed$steps.x), df_actities_fixed$steps.y, df_actities_fixed$steps.x)
+# remove the steps.x and steps.y
+df_actities_fixed %<>%
+    select(date, interval, steps)
+```
+
+## What is mean total number of steps taken per day?
+####1. Histogram of the activites by day (NA replaced with average values for interval)
+```{r, echo = TRUE, results = "asis"}
+### make a histogram of the steps per day
+df_actities_fixed %>%
+    filter(steps >= 1) %>% # does not remove NA since NA does not equal 0
+    filter(steps != "NA") %>% # To remove NAs
+    ggvis(x = ~date, y = ~steps) %>%
+    layer_histograms(width = 1)
 ```
 
 
-## Imputing missing values
-```{r, echo = TRUE}
-
+### mean and median of steps per day
+####2. Mean of the steps per day (NA replaced with average values for interval)
+```{r, echo = TRUE, results = "asis"}
+mean_activities <- df_actities_fixed %>%
+    filter(steps >= 1) %>%
+    filter(steps != "NA") %>% # To remove NAs
+    group_by(date) %>%
+    summarise(mean(steps))
 ```
 
+Table of the days and their means of steps
+```{r, echo = TRUE, results = "asis"}
+kable(mean_activities)
+```
+
+####3. Median of the steps per day (NA replaced with average values for interval)
+```{r, echo = TRUE, results = "asis"}
+median_activities <- df_actities_fixed %>%
+    filter(steps >= 1) %>%
+    filter(steps != "NA") %>% # To remove NAs
+    group_by(date) %>%
+    summarise(median(steps)) %>%
+    as_data_frame()
+```
+
+Table of the days and their median of steps
+```{r, echo = TRUE, results = "asis"}
+kable(median_activities)
+```
 
 ## Are there differences in activity patterns between weekdays and weekends?
-```{r, echo = TRUE}
+```{r, echo = TRUE, results = "asis"}
+df_paterns <- df_actities_fixed
+df_paterns$date <- as.Date(df_paterns$date)
+df_paterns$day.names <- weekdays(df_actities_fixed$date)
+df_paterns$day.type <- ifelse(df_paterns$day.names %in% c("Saturday", "Sunday"), "weekend", "weekday")
 
 ```
+
+## Plots to show diffference between weekday and weekend activities
+#### Weekday Graph
+```{r, echo = TRUE, results = "asis"}
+suppressWarnings(df_paterns %>%
+    select(interval, steps, day.type) %>%
+    filter(day.type == "weekday") %>% 
+    group_by(interval) %>% 
+    summarise_each(funs(mean)) %>%
+    ggvis(x = ~interval, y = ~steps) %>% 
+    layer_lines() %>%
+    add_axis("x" , title = "Time of Day (Military Time") %>%
+    add_axis("y", title = "Steps in 5 Minutes"))
+```
+1. Weekday graph shows burst of activity
+
+2. Max time of activity was 8:00 AM - 9:30 AM
+
+3. Low levels of activity throughout the rest of the day
+
+#### Weekend Graph
+
+```{r, echo = TRUE, results = "asis"}
+suppressWarnings(df_paterns %>%
+    select(interval, steps, day.type) %>%
+    filter(day.type == "weekend") %>% 
+    group_by(interval) %>% 
+    summarise_each(funs(mean)) %>%
+    ggvis(x = ~interval, y = ~steps) %>% 
+    layer_lines() %>%
+    add_axis("x" , title = "Time of Day (Military Time") %>%
+    add_axis("y", title = "Steps in 5 Minutes"))
+```
+1. Weekend show much more activitity throughout the day
+
+2. Max time of activity was still 8:00 AM - 9:30 AM
+
+3. Activity stayed elevated through the day
