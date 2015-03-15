@@ -49,27 +49,27 @@ df_actities %>%
     layer_histograms(width = 1)
 ```
 
-<!--html_preserve--><div id="plot_id763387691-container" class="ggvis-output-container">
-<div id="plot_id763387691" class="ggvis-output"></div>
+<!--html_preserve--><div id="plot_id189944635-container" class="ggvis-output-container">
+<div id="plot_id189944635" class="ggvis-output"></div>
 <div class="plot-gear-icon">
 <nav class="ggvis-control">
 <a class="ggvis-dropdown-toggle" title="Controls" onclick="return false;"></a>
 <ul class="ggvis-dropdown">
 <li>
 Renderer: 
-<a id="plot_id763387691_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id763387691" data-renderer="svg">SVG</a>
+<a id="plot_id189944635_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id189944635" data-renderer="svg">SVG</a>
  | 
-<a id="plot_id763387691_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id763387691" data-renderer="canvas">Canvas</a>
+<a id="plot_id189944635_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id189944635" data-renderer="canvas">Canvas</a>
 </li>
 <li>
-<a id="plot_id763387691_download" class="ggvis-download" data-plot-id="plot_id763387691">Download</a>
+<a id="plot_id189944635_download" class="ggvis-download" data-plot-id="plot_id189944635">Download</a>
 </li>
 </ul>
 </nav>
 </div>
 </div>
 <script type="text/javascript">
-var plot_id763387691_spec = {
+var plot_id189944635_spec = {
     "data": [
         {
             "name": ".0/bin1/stack2",
@@ -206,7 +206,7 @@ var plot_id763387691_spec = {
     "handlers": null
 }
 ;
-ggvis.getPlot("plot_id763387691").parseSpec(plot_id763387691_spec);
+ggvis.getPlot("plot_id189944635").parseSpec(plot_id189944635_spec);
 </script><!--/html_preserve-->
 
 ####2. Mean of the steps per day
@@ -374,27 +374,27 @@ df_actities %>%
     add_axis("y", title = "Steps in 5 Minutes")
 ```
 
-<!--html_preserve--><div id="plot_id556370427-container" class="ggvis-output-container">
-<div id="plot_id556370427" class="ggvis-output"></div>
+<!--html_preserve--><div id="plot_id168433111-container" class="ggvis-output-container">
+<div id="plot_id168433111" class="ggvis-output"></div>
 <div class="plot-gear-icon">
 <nav class="ggvis-control">
 <a class="ggvis-dropdown-toggle" title="Controls" onclick="return false;"></a>
 <ul class="ggvis-dropdown">
 <li>
 Renderer: 
-<a id="plot_id556370427_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id556370427" data-renderer="svg">SVG</a>
+<a id="plot_id168433111_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id168433111" data-renderer="svg">SVG</a>
  | 
-<a id="plot_id556370427_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id556370427" data-renderer="canvas">Canvas</a>
+<a id="plot_id168433111_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id168433111" data-renderer="canvas">Canvas</a>
 </li>
 <li>
-<a id="plot_id556370427_download" class="ggvis-download" data-plot-id="plot_id556370427">Download</a>
+<a id="plot_id168433111_download" class="ggvis-download" data-plot-id="plot_id168433111">Download</a>
 </li>
 </ul>
 </nav>
 </div>
 </div>
 <script type="text/javascript">
-var plot_id556370427_spec = {
+var plot_id168433111_spec = {
     "data": [
         {
             "name": ".0/arrange1",
@@ -519,7 +519,7 @@ var plot_id556370427_spec = {
     "handlers": null
 }
 ;
-ggvis.getPlot("plot_id556370427").parseSpec(plot_id556370427_spec);
+ggvis.getPlot("plot_id168433111").parseSpec(plot_id168433111_spec);
 </script><!--/html_preserve-->
 ## 5 minute interval that contains the max number of steps
 
@@ -585,27 +585,27 @@ df_actities_fixed %>%
     layer_histograms(width = 1)
 ```
 
-<!--html_preserve--><div id="plot_id430421538-container" class="ggvis-output-container">
-<div id="plot_id430421538" class="ggvis-output"></div>
+<!--html_preserve--><div id="plot_id437626578-container" class="ggvis-output-container">
+<div id="plot_id437626578" class="ggvis-output"></div>
 <div class="plot-gear-icon">
 <nav class="ggvis-control">
 <a class="ggvis-dropdown-toggle" title="Controls" onclick="return false;"></a>
 <ul class="ggvis-dropdown">
 <li>
 Renderer: 
-<a id="plot_id430421538_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id430421538" data-renderer="svg">SVG</a>
+<a id="plot_id437626578_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id437626578" data-renderer="svg">SVG</a>
  | 
-<a id="plot_id430421538_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id430421538" data-renderer="canvas">Canvas</a>
+<a id="plot_id437626578_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id437626578" data-renderer="canvas">Canvas</a>
 </li>
 <li>
-<a id="plot_id430421538_download" class="ggvis-download" data-plot-id="plot_id430421538">Download</a>
+<a id="plot_id437626578_download" class="ggvis-download" data-plot-id="plot_id437626578">Download</a>
 </li>
 </ul>
 </nav>
 </div>
 </div>
 <script type="text/javascript">
-var plot_id430421538_spec = {
+var plot_id437626578_spec = {
     "data": [
         {
             "name": ".0/bin1/stack2",
@@ -742,7 +742,7 @@ var plot_id430421538_spec = {
     "handlers": null
 }
 ;
-ggvis.getPlot("plot_id430421538").parseSpec(plot_id430421538_spec);
+ggvis.getPlot("plot_id437626578").parseSpec(plot_id437626578_spec);
 </script><!--/html_preserve-->
 
 
@@ -936,27 +936,27 @@ suppressWarnings(df_paterns %>%
     add_axis("y", title = "Steps in 5 Minutes"))
 ```
 
-<!--html_preserve--><div id="plot_id271692932-container" class="ggvis-output-container">
-<div id="plot_id271692932" class="ggvis-output"></div>
+<!--html_preserve--><div id="plot_id491934216-container" class="ggvis-output-container">
+<div id="plot_id491934216" class="ggvis-output"></div>
 <div class="plot-gear-icon">
 <nav class="ggvis-control">
 <a class="ggvis-dropdown-toggle" title="Controls" onclick="return false;"></a>
 <ul class="ggvis-dropdown">
 <li>
 Renderer: 
-<a id="plot_id271692932_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id271692932" data-renderer="svg">SVG</a>
+<a id="plot_id491934216_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id491934216" data-renderer="svg">SVG</a>
  | 
-<a id="plot_id271692932_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id271692932" data-renderer="canvas">Canvas</a>
+<a id="plot_id491934216_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id491934216" data-renderer="canvas">Canvas</a>
 </li>
 <li>
-<a id="plot_id271692932_download" class="ggvis-download" data-plot-id="plot_id271692932">Download</a>
+<a id="plot_id491934216_download" class="ggvis-download" data-plot-id="plot_id491934216">Download</a>
 </li>
 </ul>
 </nav>
 </div>
 </div>
 <script type="text/javascript">
-var plot_id271692932_spec = {
+var plot_id491934216_spec = {
     "data": [
         {
             "name": ".0/arrange1",
@@ -1081,7 +1081,7 @@ var plot_id271692932_spec = {
     "handlers": null
 }
 ;
-ggvis.getPlot("plot_id271692932").parseSpec(plot_id271692932_spec);
+ggvis.getPlot("plot_id491934216").parseSpec(plot_id491934216_spec);
 </script><!--/html_preserve-->
 1. Weekday graph shows burst of activity
 
@@ -1104,27 +1104,27 @@ suppressWarnings(df_paterns %>%
     add_axis("y", title = "Steps in 5 Minutes"))
 ```
 
-<!--html_preserve--><div id="plot_id649487896-container" class="ggvis-output-container">
-<div id="plot_id649487896" class="ggvis-output"></div>
+<!--html_preserve--><div id="plot_id680449452-container" class="ggvis-output-container">
+<div id="plot_id680449452" class="ggvis-output"></div>
 <div class="plot-gear-icon">
 <nav class="ggvis-control">
 <a class="ggvis-dropdown-toggle" title="Controls" onclick="return false;"></a>
 <ul class="ggvis-dropdown">
 <li>
 Renderer: 
-<a id="plot_id649487896_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id649487896" data-renderer="svg">SVG</a>
+<a id="plot_id680449452_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id680449452" data-renderer="svg">SVG</a>
  | 
-<a id="plot_id649487896_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id649487896" data-renderer="canvas">Canvas</a>
+<a id="plot_id680449452_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id680449452" data-renderer="canvas">Canvas</a>
 </li>
 <li>
-<a id="plot_id649487896_download" class="ggvis-download" data-plot-id="plot_id649487896">Download</a>
+<a id="plot_id680449452_download" class="ggvis-download" data-plot-id="plot_id680449452">Download</a>
 </li>
 </ul>
 </nav>
 </div>
 </div>
 <script type="text/javascript">
-var plot_id649487896_spec = {
+var plot_id680449452_spec = {
     "data": [
         {
             "name": ".0/arrange1",
@@ -1249,7 +1249,7 @@ var plot_id649487896_spec = {
     "handlers": null
 }
 ;
-ggvis.getPlot("plot_id649487896").parseSpec(plot_id649487896_spec);
+ggvis.getPlot("plot_id680449452").parseSpec(plot_id680449452_spec);
 </script><!--/html_preserve-->
 1. Weekend show much more activitity throughout the day
 
